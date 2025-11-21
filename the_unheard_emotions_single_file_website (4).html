@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Unheard Emotions — You Matter</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #7f9cf5; /* soft blue */
+      --accent-2: #c7f9e8; /* soft mint */
+      --glass: rgba(255,255,255,0.6);
+      --radius: 14px;
+      --max-width: 980px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:linear-gradient(180deg,var(--bg),#ffffff 60%); color:#111827; -webkit-font-smoothing:antialiased;}
+    .wrap{max-width:var(--max-width); margin:36px auto; padding:20px;}
+
+    header{display:flex; align-items:center; gap:18px;}
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,#fef3c7,#fbcfe8); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(17,24,39,0.06);}
+    .logo h1{font-family:Comfortaa, cursive; font-size:18px; margin:0; color:#111827}
+    .title{line-height:1}
+    .title .main{font-family:Comfortaa, cursive; font-size:20px; margin:0}
+    .title .sub{margin:0; font-size:12px; color:var(--muted)}
+
+    nav{margin-left:auto}
+    .navlinks{display:flex; gap:12px; align-items:center}
+    .navlinks button{background:transparent; border:0; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600}
+    .navlinks button.active{background:linear-gradient(90deg, rgba(127,156,245,0.12), rgba(199,249,232,0.12));}
+
+    main{margin-top:22px}
+    .hero{display:grid; grid-template-columns:1fr 380px; gap:24px; align-items:stretch}
+
+    .card{background:var(--card); border-radius:var(--radius); padding:22px; box-shadow:0 6px 20px rgba(17,24,39,0.06)}
+
+    .hero-left h2{font-family:Comfortaa, cursive; font-size:28px; margin:6px 0}
+    .hero-left p{color:var(--muted); margin:8px 0 18px}
+    .ctas{display:flex; gap:12px}
+    .btn{padding:10px 14px; border-radius:12px; cursor:pointer; border:0; font-weight:700}
+    .btn-primary{background:var(--accent); color:white}
+    .btn-ghost{background:transparent; color:var(--accent); border:1px solid rgba(127,156,245,0.18)}
+
+    .hero-right{display:flex; flex-direction:column; gap:12px}
+    .stat{display:flex; gap:14px; align-items:center}
+    .stat .n{font-weight:700; font-size:20px}
+    .stat .t{color:var(--muted)}
+
+    section{margin-top:22px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .icon{width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:700}
+
+    /* Pages */
+    .page{display:none}
+    .page.active{display:block}
+
+    /* About & contact layout */
+    .about-grid{display:grid; grid-template-columns:1fr 360px; gap:18px}
+
+    /* FAQs */
+    .faq-item{border-radius:10px; padding:12px; border:1px solid rgba(15,23,42,0.04); background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.4));}
+    .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer}
+    .faq-a{margin-top:8px; color:var(--muted); display:none}
+    .faq-a.open{display:block}
+
+    /* Booking form */
+    form .row{display:flex; gap:10px}
+    form label{font-size:13px; color:var(--muted); margin-bottom:6px; display:block}
+    input[type=text], input[type=email], input[type=datetime-local], textarea, select{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(15,23,42,0.06); background:transparent; font-size:14px
+    }
+    textarea{min-height:120px; resize:vertical}
+    .muted{color:var(--muted); font-size:13px}
+
+    footer{margin-top:32px; text-align:center; color:var(--muted); font-size:13px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      nav{margin-top:12px}
+      .wrap{padding:12px}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>
+          <h1>UE</h1>
+        </div>
+        <div class="title">
+          <p class="main">The Unheard Emotions</p>
+          <p class="sub">You matter. Talk. Be heard.</p>
+        </div>
+      </div>
+      <nav>
+        <div class="navlinks" role="navigation" aria-label="Main navigation">
+          <button data-page="home" class="active">Home</button>
+          <button data-page="about">About</button>
+          <button data-page="book">Book Session</button>
+          <button data-page="faqs">FAQs</button>
+          <button data-page="contact">Contact</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section id="home" class="page active">
+        <h2>Welcome to The Unheard Emotions</h2>
+        <p class="muted">A safe, warm and understanding space for emotional support, friendly conversation, and companionship for anyone feeling unheard or alone.</p>
+
+        <div class="card" style="margin-top:20px">
+          <h3 style="margin-top:0">Words for Your Heart</h3>
+          <p class="muted" style="margin-bottom:12px">Here are a few gentle reminders, crafted to comfort and ground you:</p>
+          <ul class="muted" style="padding-left:18px; line-height:1.6">
+            <li>“You deserve a space where your emotions are not only heard but understood.”</li>
+            <li>“Healing begins the moment you allow yourself to express what you’ve been holding inside.”</li>
+            <li>“You are not a burden; your feelings are valid and worthy of care.”</li>
+            <li>“Even the strongest hearts need someone to lean on — you are not alone here.”</li>
+            <li>“Your silence holds stories, and we are here to listen without judgment.”</li>
+          </ul>
+        </div>
+      </section>
+
+            <section style="margin-top:18px">
+              <div class="card" style="display:flex; align-items:center; gap:14px">
+                <div style="width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,#fff6e0,#e6faff); display:flex; align-items:center; justify-content:center">❤️</div>
+                <div>
+                  <div style="font-weight:700">Not sure what to say?</div>
+                  <div class="muted">Start small — say how your day is going or what’s on your mind. We’ll listen.</div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <aside class="hero-right">
+            <div class="card">
+              <div style="display:flex; justify-content:space-between; align-items:center">
+                <div>
+                  <div style="font-size:12px; color:var(--muted)">Next available</div>
+                  <div style="font-weight:800; font-size:16px">Today · 6:30 PM</div>
+                </div>
+                <div style="text-align:right">
+                  <div class="n">Free</div>
+                  <div class="t">Sessions</div>
+                </div>
+              </div>
+              <hr style="margin:12px 0; border:none; border-top:1px solid rgba(15,23,42,0.04)">
+              <div style="font-size:13px; color:var(--muted)">We recommend 25–45 minute check-ins. Need longer? Mention it in booking.</div>
+              <div style="margin-top:12px; display:flex; gap:8px">
+                <button class="btn btn-primary" data-page-link="book">Book now</button>
+                <button class="btn" onclick="open('mailto:mlauzievantobias@gmail.com?subject=Volunteer')">Volunteer</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div style="font-weight:700">Student-friendly</div>
+              <div class="muted">Short wait times; volunteers in different time zones to cover your schedule.</div>
+              <div style="margin-top:10px">
+                <div class="stat"><div class="n">1,250+</div><div class="t">Sessions held</div></div>
+                <div class="stat"><div class="n">98%</div><div class="t">Would recommend</div></div>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="page">
+        <div class="about-grid">
+          <div>
+            <div class="card">
+              <h3 style="margin-top:0">About — The Unheard Emotions</h3>
+              <p class="muted">We are a volunteer-run listening platform focused on offering free, compassionate company to people feeling lonely, anxious, or in need of someone to talk to. Our listeners are trained to hold space, not to give professional therapy. If you need clinical support, we will help you find resources.</p>
+
+              <h4 style="margin-top:12px">How it works</h4>
+              <ol class="muted">
+                <li>Choose a slot in "Book Session".</li>
+                <li>Fill a short form with what you prefer for the session.</li>
+                <li>You’ll get a confirmation and a downloadable calendar invite (client-side).</li>
+                <li>At the scheduled time, connect through the method chosen (phone, video link, or chat).</li>
+              </ol>
+
+              <h4 style="margin-top:12px">A note on safety</h4>
+              <p class="muted">This service is for emotional support and companionship. It is <strong>not</strong> a replacement for emergency services or professional mental health care. If you or someone else is in immediate danger, please contact local emergency services.</p>
+            </div>
+
+            <div style="margin-top:12px" class="card">
+              <h4 style="margin:0">Why free?</h4>
+              <p class="muted">We want support to be accessible to students and people on tight budgets. The platform runs on volunteer time and community contributions.</p>
+            </div>
+
+          </div>
+
+          <aside>
+            <div class="card">
+              <h4 style="margin:0">Our values</h4>
+              <ul class="muted">
+                <li>Compassion</li>
+                <li>Confidentiality</li>
+                <li>Respect</li>
+                <li>Non-judgemental listening</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:12px" class="card">
+              <h4 style="margin:0">Quick facts</h4>
+              <div class="muted">Open to anyone. Volunteer-run. Student-friendly schedule. No judgement.</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- BOOK -->
+      <section id="book" class="page">
+        <div class="card">
+          <h3 style="margin-top:0">Book a session</h3>
+          <p class="muted">Choose a date and time that works for you. All sessions are free. We store your booking locally on your device and provide a downloadable calendar invite — for added features or automated reminders you can connect the site to a backend later.</p>
+
+          <form id="bookingForm">
+            <div style="display:flex; gap:12px; flex-wrap:wrap">
+              <div style="flex:1; min-width:220px">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" placeholder="How should we call you?" required>
+              </div>
+
+              <div style="flex:1; min-width:220px">
+                <label for="email">Email (for confirmation)</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap">
+              <div style="flex:1; min-width:220px">
+                <label for="datetime">Preferred date & time</label>
+                <input id="datetime" name="datetime" type="datetime-local" required>
+              </div>
+
+              <div style="flex:1; min-width:220px">
+                <label for="method">Session method</label>
+                <select id="method" name="method">
+                  <option value="text">Text chat</option>
+                  <option value="voice">Voice call</option>
+                  <option value="video">Video call</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              <label for="message">Anything you'd like the listener to know? (optional)</label>
+              <textarea id="message" name="message" placeholder="A short sentence is fine — or leave blank."></textarea>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:8px; align-items:center">
+              <button class="btn btn-primary" type="submit">Confirm booking</button>
+              <button class="btn" type="button" id="clearLocal">Clear saved bookings</button>
+              <div id="bookingMsg" class="muted" style="margin-left:8px"></div>
+            </div>
+          </form>
+
+        </div>
+
+        <div style="margin-top:14px" class="card">
+          <h4 style="margin-top:0">Your saved bookings (local)</h4>
+          <div id="bookingsList" class="muted">No bookings yet.</div>
+        </div>
+      </section>
+
+      <!-- FAQs -->
+      <section id="faqs" class="page">
+        <div class="card">
+          <h3 style="margin-top:0">Frequently asked questions</h3>
+          <div style="display:grid; gap:10px; margin-top:8px">
+            <div class="faq-item">
+              <div class="faq-q"> <div>Is this professional therapy?</div> <div>+</div></div>
+              <div class="faq-a">No — this is peer emotional support and friendly listening. If you need clinical therapy, we can help you find professional resources.</div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q"> <div>Is it really free?</div> <div>+</div></div>
+              <div class="faq-a">Yes. Sessions are offered free by volunteers. Donations and community support help keep us running.</div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q"> <div>What if I'm in crisis?</div> <div>+</div></div>
+              <div class="faq-a">If you're in immediate danger or thinking of harming yourself, please contact local emergency services right away. This platform is not a crisis hotline.</div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q"> <div>How private are sessions?</div> <div>+</div></div>
+              <div class="faq-a">We ask listeners to respect confidentiality. We do not record sessions without consent. However, do not share highly sensitive legal/medical information here.</div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="page">
+        <div class="card">
+          <h3 style="margin-top:0">Contact</h3>
+          <p class="muted">Questions, volunteer interest, or partnership ideas — we’d love to hear from you. Use the form below or reach us through the contacts listed.</p>
+
+          <form id="contactForm">
+            <div style="display:flex; gap:12px; flex-wrap:wrap">
+              <div style="flex:1; min-width:220px">
+                <label for="cname">Your name</label>
+                <input id="cname" type="text" required>
+              </div>
+              <div style="flex:1; min-width:220px">
+                <label for="cemail">Email</label>
+                <input id="cemail" type="email" required>
+              </div>
+            </div>
+            <div style="margin-top:12px">
+              <label for="cmessage">Message</label>
+              <textarea id="cmessage" required></textarea>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:8px; align-items:center">
+              <button class="btn btn-primary" type="submit">Send message</button>
+              <div id="contactMsg" class="muted"></div>
+            </div>
+          </form>
+
+        </div>
+
+        <div style="margin-top:14px" class="card">
+          <h4 style="margin-top:0">Other ways to reach us</h4>
+          <p class="muted" style="margin:0 0 8px 0">If you prefer not to use the form, try one of the ways below.</p>
+          <ul class="muted" style="padding-left:18px; margin:0 0 8px 0">
+            <li><strong>Email (general):</strong> <a href="mailto:mlauzievantobias@gmail.com">mlauzievantobias@gmail.com</a></li>
+            <li><strong>Volunteer & partnerships:</strong> <a href="mailto:mlauzievantobias@gmail.com">mlauzievantobias@gmail.com</a></li>
+            <li><strong>Social:</strong> <a href="#" aria-label="Instagram">@theunheardemotions</a> · <a href="#" aria-label="Twitter">@unheard_emotions</a></li>
+          </ul>
+
+          <h4 style="margin:6px 0 0 0">If you are in immediate danger</h4>
+          <p class="muted">This platform is <strong>not</strong> an emergency or crisis service. If you or someone else is at immediate risk, please contact your local emergency services right away (for many countries this is <strong>112</strong> or <strong>911</strong>). If you are a student, consider contacting your university counselling centre — they can offer immediate help.</p>
+
+          <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+            <button class="btn" onclick="window.open('mailto:mlauzievantobias@gmail.com')">Email us</button>
+            <button class="btn" onclick="window.open('mailto:mlauzievantobias@gmail.com')">Volunteer</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> The Unheard Emotions — Built with care · <span class="muted">Not a crisis service.</span>
+    </footer>
+  </div>
+
+  <script>
+    // Simple SPA nav
+    const navBtns = document.querySelectorAll('.navlinks button');
+    const pages = document.querySelectorAll('.page');
+    function showPage(id){
+      pages.forEach(p=>p.classList.toggle('active', p.id===id));
+      navBtns.forEach(b=>b.classList.toggle('active', b.dataset.page===id));
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+    navBtns.forEach(b=> b.addEventListener('click', ()=> showPage(b.dataset.page)));
+    document.querySelectorAll('[data-page-link]').forEach(el=> el.addEventListener('click', ()=> showPage(el.dataset.pageLink)));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(item=>{
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      q.addEventListener('click', ()=>{
+        const open = a.classList.toggle('open');
+        q.querySelector('div:last-child').textContent = open ? '-' : '+';
+      });
+    });
+
+    // Bookings stored in localStorage
+    const form = document.getElementById('bookingForm');
+    const bookingsList = document.getElementById('bookingsList');
+    const bookingMsg = document.getElementById('bookingMsg');
+    const clearBtn = document.getElementById('clearLocal');
+
+    function loadBookings(){
+      const raw = localStorage.getItem('ue_bookings');
+      try{
+        return raw ? JSON.parse(raw) : [];
+      }catch(e){ return []; }
+    }
+    function saveBookings(list){ localStorage.setItem('ue_bookings', JSON.stringify(list)); }
+    function renderBookings(){
+      const list = loadBookings();
+      if(!list.length){ bookingsList.innerHTML = '<div>No bookings yet.</div>'; return }
+      bookingsList.innerHTML = '';
+      list.forEach((b, idx)=>{
+        const el = document.createElement('div');
+        el.style.padding='8px'; el.style.borderBottom='1px dashed rgba(15,23,42,0.04)';
+        el.innerHTML = `<div style="font-weight:700">${escapeHTML(b.name)} — ${new Date(b.datetime).toLocaleString()}</div><div class="muted">Method: ${escapeHTML(b.method)} · ${escapeHTML(b.email)}</div><div style="margin-top:6px">${escapeHTML(b.message||'')}</div>`;
+        const btnRow = document.createElement('div'); btnRow.style.marginTop='6px';
+        const dl = document.createElement('button'); dl.className='btn'; dl.textContent='Download .ics'; dl.onclick = ()=> downloadICS(b);
+        const del = document.createElement('button'); del.className='btn'; del.textContent='Delete'; del.style.marginLeft='8px'; del.onclick = ()=>{ deleteBooking(idx) };
+        btnRow.appendChild(dl); btnRow.appendChild(del);
+        el.appendChild(btnRow);
+        bookingsList.appendChild(el);
+      });
+    }
+
+    function deleteBooking(i){
+      const list = loadBookings(); list.splice(i,1); saveBookings(list); renderBookings(); bookingMsg.textContent='';
+    }
+
+    function downloadICS(b){
+      const dt = new Date(b.datetime);
+      const dtStart = toICSDate(dt);
+      const dtEnd = toICSDate(new Date(dt.getTime() + 45*60000));
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//The Unheard Emotions//EN\nBEGIN:VEVENT\nUID:${Date.now()}@theunheardemotions\nDTSTAMP:${toICSDate(new Date())}\nDTSTART:${dtStart}\nDTEND:${dtEnd}\nSUMMARY:Talking session with ${escapeICS(b.name)}\nDESCRIPTION:${escapeICS(b.message||'') }\nEND:VEVENT\nEND:VCALENDAR`;
+      const blob = new Blob([ics], {type:'text/calendar'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = `session-${dt.toISOString().slice(0,10)}.ics`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    function toICSDate(d){
+      // UTC in format YYYYMMDDTHHMMSSZ
+      return d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';
+    }
+    function escapeICS(s){ return (s||'').replace(/\n/g,'\\n').replace(/,/g,'\,').replace(/;/g,'\\;'); }
+
+    function escapeHTML(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        datetime: form.datetime.value,
+        method: form.method.value,
+        message: form.message.value.trim()
+      };
+      if(!data.name || !data.email || !data.datetime){ bookingMsg.textContent='Please fill required fields.'; return }
+      // basic datetime check
+      const chosen = new Date(data.datetime);
+      if(isNaN(chosen.getTime())){ bookingMsg.textContent='Invalid date/time.'; return }
+      if(chosen.getTime() < Date.now()-60000){ bookingMsg.textContent='Please choose a future time.'; return }
+
+      // save locally
+      const list = loadBookings(); list.push(data); saveBookings(list); renderBookings(); bookingMsg.textContent='Booking saved locally. Download .ics to add to your calendar.';
+      form.reset();
+    });
+
+    clearBtn.addEventListener('click', ()=>{ if(confirm('Clear all saved bookings from this device?')){ localStorage.removeItem('ue_bookings'); renderBookings(); bookingMsg.textContent=''; } });
+
+    renderBookings();
+
+    // Contact form: opens mail client with content (no backend in this static version)
+    const contactForm = document.getElementById('contactForm');
+    const contactMsg = document.getElementById('contactMsg');
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const msg = document.getElementById('cmessage').value.trim();
+      if(!name || !email || !msg){ contactMsg.textContent='Please fill all fields.'; return }
+      const subject = encodeURIComponent('Contact from ' + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${msg}`);
+      window.location.href = `mailto:mlauzievantobias@gmail.com?subject=${subject}&body=${body}`;
+      contactMsg.textContent='Opening your mail client...';
+      setTimeout(()=> contactMsg.textContent='If nothing opened, please email mlauzievantobias@gmail.com directly.' , 1500);
+      contactForm.reset();
+    });
+
+    // small accessibility: keyboard nav for nav buttons
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape') showPage('home');
+    });
+
+  </script>
+</body>
+</html>
